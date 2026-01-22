@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Pagos - Bolivia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-money-check-alt"></i> Gestión de Pagos - Bolivia</h1>
+            <div class="user-info">
+                <span><i class="fas fa-user-circle"></i> Encargado de Caja</span>
+                <span class="bandera-bo">🇧🇴</span>
+            </div>
+        </header>
+
+        <!-- Tabs de navegación -->
+        <div class="tabs">
+            <button class="tab active" data-tab="registrar"><i class="fas fa-plus-circle"></i> Registrar Pago</button>
+            <button class="tab" data-tab="recibo"><i class="fas fa-receipt"></i> Emitir Recibo</button>
+            <button class="tab" data-tab="historial"><i class="fas fa-history"></i> Historial de Pagos</button>
+        </div>
+
+        <!-- Sección de Registrar Pago -->
+        <section id="registrar" class="tab-content active">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-edit"></i> Registrar Pago</h2>
+                    <div class="priority-badge high">
+                        <i class="fas fa-exclamation-circle"></i> PRIORIDAD ALTA
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="description">
+                        <p><strong>Descripción:</strong> Como encargado de caja, quiero registrar un pago por los servicios realizados para mantener control financiero.</p>
+                    </div>
+
+                    <div class="checklist">
+                        <h3><i class="fas fa-check-square"></i> Checklist:</h3>
+                        <ul>
+                            <li>Selección del paciente</li>
+                            <li>Métodos de pago: Efectivo / TPV / Transferencia Bancaria / QR Bolivia</li>
+                            <li>Estado: PAGADO/PENDIENTE</li>
+                        </ul>
+                    </div>
+
+                    <form id="form-pago">
+                        <div class="form-group">
+                            <label for="paciente"><i class="fas fa-user-injured"></i> Seleccionar Paciente:</label>
+                            <select id="paciente" required>
+                                <option value="">-- Seleccione un paciente --</option>
+                                <option value="1">Juan Pérez López</option>
+                                <option value="2">María González Sánchez</option>
+                                <option value="3">Carlos Rodríguez Martínez</option>
+                                <option value="4">Ana Fernández García</option>
+                                <option value="5">Luis Hernández Díaz</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="monto"><i class="fas fa-dollar-sign"></i> Monto (Bs.):</label>
+                            <input type="number" id="monto" min="0" step="0.01" placeholder="0.00" required>
+                            <small class="currency-note">Monto en Bolivianos</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-credit-card"></i> Método de Pago:</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="metodo" value="efectivo" checked>
+                                    <span class="radio-label"><i class="fas fa-money-bill-wave"></i> Efectivo</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="metodo" value="tpv" id="radio-tpv">
+                                    <span class="radio-label"><i class="fas fa-credit-card"></i> TPV</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="metodo" value="transferencia" id="radio-transferencia">
+                                    <span class="radio-label"><i class="fas fa-university"></i> Transferencia</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="metodo" value="qr" id="radio-qr">
+                                    <span class="radio-label"><i class="fas fa-qrcode"></i> QR Bolivia</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-info-circle"></i> Estado:</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="estado" value="pagado" checked>
+                                    <span class="status-badge paid"><i class="fas fa-check-circle"></i> PAGADO</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="estado" value="pendiente">
+                                    <span class="status-badge pending"><i class="fas fa-clock"></i> PENDIENTE</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion"><i class="fas fa-file-alt"></i> Descripción:</label>
+                            <textarea id="descripcion" rows="3" placeholder="Descripción del pago..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary">
+                                <i class="fas fa-calendar-alt"></i> Fechas
+                            </button>
+                            <button type="button" class="btn-secondary">
+                                <i class="fas fa-list"></i> Checklist
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i> Registrar Pago
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Emitir Recibo -->
+        <section id="recibo" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-receipt"></i> Emitir Recibo</h2>
+                    <div class="priority-badge high">
+                        <i class="fas fa-exclamation-circle"></i> PRIORIDAD ALTA
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="description">
+                        <p><strong>Descripción:</strong> Como caja, quiero generar un recibo con número único asociado al pago.</p>
+                    </div>
+
+                    <div class="checklist">
+                        <h3><i class="fas fa-check-square"></i> Checklist:</h3>
+                        <ul>
+                            <li>Número correlativo</li>
+                            <li>Fecha</li>
+                            <li>Monto total</li>
+                        </ul>
+                    </div>
+
+                    <div class="recibo-container">
+                        <div class="recibo-preview" id="recibo-preview">
+                            <div class="recibo-header">
+                                <h3><i class="fas fa-hospital"></i> CLÍNICA SALUD BOLIVIA</h3>
+                                <p class="recibo-note">Santa Cruz de la Sierra - Bolivia</p>
+                            </div>
+                            
+                            <div class="recibo-info">
+                                <div class="recibo-field">
+                                    <span class="recibo-label">Número de Recibo:</span>
+                                    <span class="recibo-value" id="recibo-numero">R-001</span>
+                                </div>
+                                <div class="recibo-field">
+                                    <span class="recibo-label">Fecha:</span>
+                                    <span class="recibo-value" id="recibo-fecha">01/01/2024</span>
+                                </div>
+                                <div class="recibo-field">
+                                    <span class="recibo-label">Paciente:</span>
+                                    <span class="recibo-value" id="recibo-paciente">-</span>
+                                </div>
+                                <div class="recibo-field">
+                                    <span class="recibo-label">Método de Pago:</span>
+                                    <span class="recibo-value" id="recibo-metodo">-</span>
+                                </div>
+                            </div>
+                            
+                            <div class="recibo-monto">
+                                <span class="recibo-label">MONTO TOTAL:</span>
+                                <span class="recibo-total" id="recibo-monto">Bs. 0.00</span>
+                            </div>
+                            
+                            <div class="recibo-footer">
+                                <p>¡Gracias por su pago!</p>
+                                <p><i class="fas fa-qrcode"></i> Recibo válido como comprobante</p>
+                            </div>
+                        </div>
+                        
+                        <div class="recibo-actions">
+                            <div class="form-group">
+                                <label for="recibo-paciente-select"><i class="fas fa-user-injured"></i> Seleccionar Pago para Recibo:</label>
+                                <select id="recibo-paciente-select">
+                                    <option value="">-- Seleccione un pago registrado --</option>
+                                </select>
+                            </div>
+                            
+                            <button id="generar-recibo" class="btn-primary">
+                                <i class="fas fa-file-invoice"></i> Generar Recibo
+                            </button>
+                            <button id="imprimir-recibo" class="btn-secondary" disabled>
+                                <i class="fas fa-print"></i> Imprimir Recibo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Historial de Pagos -->
+        <section id="historial" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-history"></i> Historial de Pagos del Paciente</h2>
+                    <div class="priority-badge medium">
+                        <i class="fas fa-info-circle"></i> PRIORIDAD MEDIA
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="description">
+                        <p><strong>Descripción:</strong> Como administrativo, quiero ver los pagos previos del paciente para control económico.</p>
+                    </div>
+
+                    <div class="checklist">
+                        <h3><i class="fas fa-check-square"></i> Checklist:</h3>
+                        <ul>
+                            <li>Lista cronológica</li>
+                            <li>Acceso al recibo</li>
+                        </ul>
+                    </div>
+
+                    <div class="filtros-historial">
+                        <div class="form-group">
+                            <label for="filtro-paciente"><i class="fas fa-user-injured"></i> Seleccionar Paciente:</label>
+                            <select id="filtro-paciente">
+                                <option value="">-- Todos los pacientes --</option>
+                                <option value="1">Juan Pérez López</option>
+                                <option value="2">María González Sánchez</option>
+                                <option value="3">Carlos Rodríguez Martínez</option>
+                                <option value="4">Ana Fernández García</option>
+                                <option value="5">Luis Hernández Díaz</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="filtro-estado"><i class="fas fa-filter"></i> Filtrar por Estado:</label>
+                            <select id="filtro-estado">
+                                <option value="">Todos los estados</option>
+                                <option value="pagado">PAGADO</option>
+                                <option value="pendiente">PENDIENTE</option>
+                            </select>
+                        </div>
+                        
+                        <button id="aplicar-filtros" class="btn-secondary">
+                            <i class="fas fa-search"></i> Aplicar Filtros
+                        </button>
+                    </div>
+
+                    <div class="historial-container">
+                        <h3><i class="fas fa-list-ol"></i> Lista Cronológica de Pagos</h3>
+                        <div class="table-container">
+                            <table id="tabla-historial">
+                                <thead>
+                                    <tr>
+                                        <th><i class="fas fa-calendar"></i> Fecha</th>
+                                        <th><i class="fas fa-user"></i> Paciente</th>
+                                        <th><i class="fas fa-dollar-sign"></i> Monto</th>
+                                        <th><i class="fas fa-credit-card"></i> Método</th>
+                                        <th><i class="fas fa-info-circle"></i> Estado</th>
+                                        <th><i class="fas fa-receipt"></i> Recibo</th>
+                                        <th><i class="fas fa-cogs"></i> Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historial-body">
+                                    <!-- Los pagos se cargarán aquí dinámicamente -->
+                                    <tr>
+                                        <td colspan="7" class="empty-state">
+                                            <i class="fas fa-clipboard-list"></i>
+                                            <p>No hay pagos registrados aún. Comienza registrando un pago en la primera pestaña.</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Sistema de Gestión de Pagos &copy; 2024 | Desarrollado para control financiero médico</p>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-question-circle"></i> Ayuda</a>
+                <a href="#"><i class="fas fa-cog"></i> Configuración</a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         MODALES PARA MÉTODOS DE PAGO
+         ============================================ -->
+
+    <!-- Modal para TPV -->
+    <div id="modal-tpv" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-credit-card"></i> Pago con TPV</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tpv-simulacion">
+                    <div class="tpv-terminal">
+                        <div class="tpv-screen">
+                            <div class="tpv-header">
+                                <h4>TERMINAL TPV</h4>
+                                <p>Procesando pago...</p>
+                            </div>
+                            <div class="tpv-info">
+                                <p>Monto: <span id="tpv-monto">Bs. 0.00</span></p>
+                                <p>Fecha: <span id="tpv-fecha">--/--/----</span></p>
+                                <p>N° Operación: <span id="tpv-operacion">---</span></p>
+                            </div>
+                            <div class="tpv-status">
+                                <div class="tpv-loading">
+                                    <div class="spinner"></div>
+                                    <p>Espere por favor...</p>
+                                </div>
+                                <div class="tpv-success" style="display: none;">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>¡Pago exitoso!</p>
+                                </div>
+                                <div class="tpv-error" style="display: none;">
+                                    <i class="fas fa-times-circle"></i>
+                                    <p>Error en transacción</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tpv-buttons">
+                            <button class="tpv-btn btn-confirmar"><i class="fas fa-check"></i> Confirmar Pago</button>
+                            <button class="tpv-btn btn-cancelar"><i class="fas fa-times"></i> Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Transferencia -->
+    <div id="modal-transferencia" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-university"></i> Transferencia Bancaria</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="transferencia-info">
+                    <!-- Selector de Banco Boliviano -->
+                    <div class="form-group">
+                        <label for="banco-bolivia"><i class="fas fa-bank"></i> Seleccionar Banco:</label>
+                        <select id="banco-bolivia" class="banco-select">
+                            <option value="bisa">Banco BISA</option>
+                            <option value="bnb">Banco Nacional de Bolivia (BNB)</option>
+                            <option value="mercantil">Banco Mercantil Santa Cruz</option>
+                            <option value="economico">Banco Económico</option>
+                            <option value="fie">Banco FIE</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Datos Bancarios Dinámicos -->
+                    <div class="bank-details" id="datos-banco-dinamico">
+                        <h4><i class="fas fa-building"></i> Datos Bancarios</h4>
+                        <div class="bank-field">
+                            <span class="bank-label">Banco:</span>
+                            <span class="bank-value" id="banco-nombre">Banco BISA</span>
+                        </div>
+                        <div class="bank-field">
+                            <span class="bank-label">Titular:</span>
+                            <span class="bank-value">CLÍNICA SALUD BOLIVIA</span>
+                        </div>
+                        <div class="bank-field">
+                            <span class="bank-label">NIT:</span>
+                            <span class="bank-value">12345678901</span>
+                        </div>
+                        <div class="bank-field">
+                            <span class="bank-label">N° Cuenta:</span>
+                            <span class="bank-value" id="cuenta-numero">1001-2345-6789</span>
+                        </div>
+                        <div class="bank-field">
+                            <span class="bank-label">Tipo de Cuenta:</span>
+                            <span class="bank-value" id="tipo-cuenta">Cuenta Corriente</span>
+                        </div>
+                        <div class="bank-field">
+                            <span class="bank-label">Monto a Transferir:</span>
+                            <span class="bank-value" id="monto-transferencia" style="color: #4a6fa5; font-weight: bold;">Bs. 0.00</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Referencia de Pago -->
+                    <div class="referencia-pago">
+                        <h4><i class="fas fa-hashtag"></i> Referencia de Pago</h4>
+                        <div class="referencia-codigo">
+                            <span id="codigo-referencia">REF-2024-001234</span>
+                            <button class="btn-copiar-small" id="copiar-referencia">
+                                <i class="fas fa-copy"></i> Copiar
+                            </button>
+                        </div>
+                        <p class="referencia-nota">Use este código como referencia/concepto en la transferencia</p>
+                    </div>
+                    
+                    <div class="transferencia-instructions">
+                        <h4><i class="fas fa-info-circle"></i> Instrucciones:</h4>
+                        <ol>
+                            <li>Realice la transferencia por el monto exacto</li>
+                            <li>Use el código de referencia como concepto</li>
+                            <li>Guarde el comprobante de transferencia</li>
+                            <li>El pago se confirmará en 24-48 horas</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="transferencia-actions">
+                        <button class="btn-secondary" id="copiar-todo">
+                            <i class="fas fa-copy"></i> Copiar Todos los Datos
+                        </button>
+                        <button class="btn-primary" id="confirmar-transferencia-bo">
+                            <i class="fas fa-check"></i> Confirmar Transferencia
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para QR -->
+    <div id="modal-qr" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-qrcode"></i> Pago con QR</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="qr-container">
+                    <div class="qr-code-container">
+                        <div class="qr-code" id="qr-code-display">
+                            <div class="qr-placeholder">
+                                <i class="fas fa-qrcode"></i>
+                                <p>Generando código QR...</p>
+                            </div>
+                        </div>
+                        <div class="qr-info">
+                            <p><strong>Monto:</strong> <span id="qr-monto">Bs. 0.00</span></p>
+                            <p><strong>Válido por:</strong> 15 minutos</p>
+                            <p><strong>ID Transacción:</strong> <span id="qr-id">---</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="qr-instructions">
+                        <h4><i class="fas fa-mobile-alt"></i> Cómo pagar:</h4>
+                        <ol>
+                            <li>Abra su app de banca móvil</li>
+                            <li>Seleccione "Pagar con QR" o "CoDi"</li>
+                            <li>Escanee este código</li>
+                            <li>Confirme el pago en su app</li>
+                        </ol>
+                        
+                        <div class="qr-timer">
+                            <i class="fas fa-clock"></i>
+                            <span>Tiempo restante: <span id="qr-timer">15:00</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="qr-actions">
+                        <button class="btn-secondary" id="refresh-qr">
+                            <i class="fas fa-sync-alt"></i> Generar Nuevo QR
+                        </button>
+                        <button class="btn-primary" id="verificar-pago">
+                            <i class="fas fa-search"></i> Verificar Pago
+                        </button>
+                    </div>
+                    
+                    <div class="qr-status">
+                        <div class="status-pending" id="qr-status-pending">
+                            <i class="fas fa-clock"></i>
+                            <p>Esperando pago...</p>
+                        </div>
+                        <div class="status-success" id="qr-status-success" style="display: none;">
+                            <i class="fas fa-check-circle"></i>
+                            <p>¡Pago confirmado!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
